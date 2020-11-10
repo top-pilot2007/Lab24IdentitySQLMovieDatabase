@@ -91,5 +91,7 @@ namespace Lab24IdentitySQLMovieDatabase.Data
 
             base.OnModelCreating(modelBuilder);
         }
+        //public DbSet<UserLoginInfo> User { get; set; }
+        public DbSet<Lab24IdentitySQLMovieDatabase.Models.CheckOut> CheckOut { get; set; }
     }
 }

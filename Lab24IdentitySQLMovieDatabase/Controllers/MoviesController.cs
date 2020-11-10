@@ -157,5 +157,31 @@ namespace Lab24IdentitySQLMovieDatabase.Models
         {
             return _context.Movies.Any(e => e.ID == id);
         }
+        public async Task<IActionResult> CheckOut (int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var movie = await _context.Movies
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+            var user = HttpContext.User;
+            var checkedOutMovies = new CheckedOutMovies()
+            {
+                DueDate = DateTime.Now.AddDays(2),
+                MovieId = movie.ID,
+                UserId = user.Identity.Name
+
+            };
+            _context.Add(checkedOutMovies);
+            await _context.SaveChangesAsync();
+
+            return View(checkedOutMovies);
+        }
     }
 }

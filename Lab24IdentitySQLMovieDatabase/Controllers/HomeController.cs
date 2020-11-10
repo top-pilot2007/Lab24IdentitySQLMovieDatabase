@@ -26,6 +26,10 @@ namespace Lab24IdentitySQLMovieDatabase.Controllers
         {
             return View();
         }
+        public IActionResult CheckedOutMovies()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
